@@ -230,23 +230,9 @@ async def twitterCrawl(url, cookie_name="xslsa77675247"):
         print(user_name + " OK!")
 
 
-async def twitterCookieGen():
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=False, proxy={"server": "127.0.0.1:7890"})
-        context = await browser.new_context()
-        page = await context.new_page()
-        await page.goto("https://x.com/")
-        await asyncio.sleep(10)
-        name = input("press enter to save cookie->file_name:")
-        await asyncio.sleep(10)
-        storage = await context.storage_state(path=f"account/{name}.json")
-    print("save success")
-
-
 if __name__ == "__main__":
-    # asyncio.run(twitterCookieGen())
-
-    # account_name = "stratton_a24025"
+    if not os.path.exists("./result"):
+        os.makedirs("./result")
     account_name = sys.argv[1]
     for url in create_zmq():
         user_name = url.split("/")[-1]
