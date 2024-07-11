@@ -1,0 +1,4 @@
+pyzmq
+playwright
+exobject
+playwright-stealth
